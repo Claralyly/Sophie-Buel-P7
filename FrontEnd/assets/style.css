@@ -1,0 +1,555 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/** end reset css**/
+body {
+	max-width: 1140px;
+	margin:auto;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0
+}
+
+
+section {
+	margin: 50px 0
+}
+
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+h1 > span {
+	font-family: 'Work Sans';
+	font-size:10px;
+	letter-spacing: 0.1em;
+;
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+
+}
+nav li {
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+li:hover {
+	color: #B1663C;
+}
+#introduction {
+	display: flex;
+	align-items: center;
+}
+#introduction figure {
+	flex: 1
+}
+#introduction img {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+#introduction article {
+	flex: 1
+}
+#introduction h2 {
+	margin-bottom: 1em;
+}
+
+#introduction p {
+	margin-bottom: 0.5em;
+}
+
+#portfolio h2 {
+	text-align: center;
+	
+	display: flex;
+	justify-content: center;
+	gap: 80px;
+}
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+
+}
+#contact {
+	width: 50%;
+margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2 {
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+/* login */
+body   {
+	background-color: #FFFEF8;
+}
+
+html #login  {
+	width: 100%;
+	height: 1024px;
+	margin-top: 150px;
+	
+}
+#login h2 {
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: center;	
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+	
+}
+#login form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width: 50%;
+	
+}
+.error-message {
+	display: flex;
+	justify-content: center;
+	color: red;
+	font-size: 12px;
+	margin-bottom: 40px;
+}	
+#login input {
+	font-size: 14px;
+	border: none;
+	margin-top: 10px;
+	height: 36px;
+	margin-bottom: 50px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	
+}
+
+/* Se connecter */	
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+/* Oubli */
+.oubli {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: right;
+	margin-right: 10px;
+	margin-left: 7px;
+	
+	
+
+}
+/*Enlever la couleur violet à oublié*/
+a:visited {
+	
+	color: black;
+}
+
+/* footer */
+footer{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 60px;
+	width: 100%;
+	top: 964px;
+	background-color: white;
+}
+
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
+
+/* edit modif */
+
+.edit-mode { 
+	display: flex;
+	justify-content: center;
+	padding:  19px;
+	background-color: black;
+	color: white;
+	gap: 10px;
+	width: 100%;
+}
+
+
+
+
+/* Modal */
+.modifier.btn-modifier {
+	display: flex;
+    justify-content: center;
+	cursor: pointer;
+	gap: 10px;
+	margin-bottom: 20px;
+	
+}
+.title-projet {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: 20px;
+}
+/* la modale 1 */
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0; 
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.3); /* ← Fond gris transparent */
+	z-index: 1000;
+  }
+  
+  /* Boîte modale blanche */
+  .modalinter {
+	position: absolute;
+	top: 60%; 
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 638px;
+	height: 688px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+	text-align: center;
+	padding: 30px 40px;
+  }
+  
+.modalinter h2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 24px;
+	color: black;
+}
+.modalinter span {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btnajt[type="submit"]  {
+    width: 237px;
+    height: 36px;
+    border: none;
+    cursor: pointer;
+   
+}
+.modale-separator {
+	border: none;
+	height: 1px;
+	background-color: #B3B3B3; /* gris doux comme sur la maquette */
+	margin: 40px auto 30px;
+	width: 420px;
+  }
+  
+
+/*import travaux */
+
+.section-image {
+	display: grid;
+	grid-template-columns: repeat(5, 76.86px); /* 5 colonnes d’images alignées */
+	gap: 10px;
+	justify-content: center;
+	margin-top: 40px;
+	margin-bottom: 100px;
+	padding: 0 20px;
+  }
+  
+  .section-image .work-item {
+	position: relative;
+	width: 76.86px;
+	height: 102.57px;
+  }
+  
+  .section-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 3px;
+  }
+  
+
+  
+  .section-image .fa-trash-can {
+	position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 17px;
+  height: 17px;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  border: 1px solid white;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  }
+  
+
+/* la modale 2 */
+.addPhoto {
+	display: none;
+	
+	flex-direction: column;
+	align-items: center;
+	height: 670px;
+    width: 630px;
+	background-color: white;
+	border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+	.fa-arrow-left {
+		position: absolute;
+		top: 10px;
+		left: 20px;
+		font-size: 20px;
+		cursor: pointer;
+		margin-top: 10px;
+	}
+	.fa-xmark {
+		position: absolute;
+		top: 10px;
+		right: 20px;
+		margin-top: 10px;
+		font-size: 20px;
+		cursor: pointer;
+	}
+	h2{
+		display: flex;
+        justify-content: center;
+		margin-top: 70px;
+		color: black;
+	}
+	form {
+		display: flex;
+	
+	flex-direction: column;
+	
+	}
+	}
+	.containerPhoto {
+		display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+		background-color: #E8F1F6;
+		width: 420px;
+        height: 169px;
+		margin-left: 100px;
+    margin-top: 30px;
+		border-radius: 3px;
+		
+	}
+	span.add-img {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 76px;
+    	height: 76px;
+		color: rgb(217, 212, 212);
+	}
+	.file {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgb(217, 212, 212);
+		color: rgb(120, 120, 182);
+		border-radius: 50px;
+		width: 173px;
+    height: 36px;
+	}
+	input[type="file"] {
+		display: none;
+	  }
+	
+	label.title {
+		margin-left: 100px;
+		width: 65px;
+		height: 16px;
+		margin-top: 30px;
+    margin-bottom: 10px;
+	}
+
+	
+	#title {
+		width: 420px;
+		height: 51px;
+		margin-left: 100px;
+		box-shadow: 0 2px 10px rgb(195 190 190 / 40%);
+		border: none;
+	  }
+	  
+	label.category {
+		margin-left: 100px;
+		width: 65px;
+		height: 16px;
+		margin-top: 20px;
+    margin-bottom: 15px;
+	}
+	select {
+	width: 420px;	
+    height: 51px;
+	margin-left: 100px;
+	box-shadow: 0 2px 10px rgb(195 190 190 / 40%);
+    border: none;
+	}
+	form input[type="submit"] {
+		background-color: rgb(156 150 150);
+		width: 237px;
+    height: 36px;
+	border-radius: 60px;
+	border:  rgb(156 150 150);
+	}
+	form input[type="submit"]:hover {
+  background-color: #1D6154;
+}
+
+/* Gallery filters */
+/* Style par défaut des filtres */
+.filtres {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.filtres button {
+  padding: 10px 20px;
+  border: 2px solid #1D6154;      /* Vert foncé */
+  background-color: white;
+  color: #1D6154;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Survol : fond vert + texte blanc */
+.filtres button:hover {
+  background-color: #1D6154;
+  color: white;
+}
+
+

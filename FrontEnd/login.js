@@ -3,37 +3,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const formLogin = document.querySelector("form");
   if (formLogin) {
     formLogin.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
+  e.preventDefault();
 
-      if (!email || !password) {
-        alert("Veuillez remplir tous les champs.");
-        return;
-      }
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const errorDiv = document.querySelector(".error-message");
+  errorDiv.textContent = ""; // Réinitialise le message à chaque tentative
 
-      try {
-        const response = await fetch("http://localhost:5678/api/users/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
+  if (!email || !password) {
+    errorDiv.textContent = "Veuillez remplir tous les champs.";
+    return;
+  }
 
-        if (response.ok) {
-          const data = await response.json();
-          localStorage.setItem("token", data.token);
-          window.location.href = "index.html";
-        } else {
-          alert("Identifiants incorrects");
-        }
-      } catch (error) {
-        console.error("Erreur lors de la connexion :", error);
-        alert("Une erreur est survenue.");
-      }
+  try {
+    const response = await fetch("http://localhost:5678/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+      window.location.href = "index.html";
+    } else if (response.status === 401) {
+      errorDiv.textContent = "Mot de passe incorrect.";
+    } else if (response.status === 404) {
+      errorDiv.textContent = "Adresse e-mail inconnue.";
+      
+    } else {
+      errorDiv.textContent = "Erreur lors de la connexion. Veuillez réessayer.";
+    }
+    
+  } catch (error) {
+    console.error("Erreur lors de la connexion :", error);
+    errorDiv.textContent = "Une erreur réseau est survenue.";
+  }
     });
   }
+
 
   // === PARTIE 2 : Masquer les éléments d’édition si non connecté ===
   function masquerElementsEdition() {

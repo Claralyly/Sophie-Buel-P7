@@ -58,31 +58,38 @@ document.addEventListener("DOMContentLoaded", () => {
             },
           });
 
-          if (reponse.status === 204 || reponse.status === 200) {
-            alert("Élément supprimé avec succès");
-            workWrapper.remove();
-            
-            /*suppression visuelle dans la galerie */
-const imgToRemove = document.querySelector(`.gallery img[data-id="${idToDelete}"]`);
-if (imgToRemove) {
-  imgToRemove.closest("figure").remove();
-}
-          } else if (reponse.status === 401) {
-            alert("Non autorisé : tu n’as pas les droits pour supprimer cet élément.");
-          } else {
-            alert("Erreur lors de la suppression : l’élément n’a pas pu être supprimé.");
-          }
-        } catch (err) {
-          console.error("Erreur réseau lors de la suppression :", err);
-          alert("Une erreur réseau s’est produite.");
-        }
-      });
+         const messageDiv = document.querySelector(".modale-error-message");
+        messageDiv.classList.remove("message-success", "message-error");
+        messageDiv.textContent = "";
 
-      workWrapper.appendChild(img);
-      workWrapper.appendChild(deleteIcon);
-      worksDom.appendChild(workWrapper);
+        if (reponse.status === 204 || reponse.status === 200) {
+          messageDiv.textContent = "Élément supprimé avec succès.";
+          messageDiv.classList.add("message-success");
+          workWrapper.remove();
+
+          const imgToRemove = document.querySelector(`.gallery img[data-id="${idToDelete}"]`);
+          if (imgToRemove) {
+            imgToRemove.closest("figure").remove();
+          }
+        } else if (reponse.status === 401) {
+          messageDiv.textContent = "Non autorisé : vous n’avez pas les droits.";
+          messageDiv.classList.add("message-error");
+        } else {
+          messageDiv.textContent = "Erreur : l’élément n’a pas pu être supprimé.";
+          messageDiv.classList.add("message-error");
+        }
+
+      } catch (err) {
+        console.error("Erreur réseau lors de la suppression :", err);
+        alert("Une erreur réseau s’est produite.");
+      }
     });
-  }
+
+    workWrapper.appendChild(img);
+    workWrapper.appendChild(deleteIcon);
+    worksDom.appendChild(workWrapper);
+  });
+}
 
   // Initialisation de l’affichage
   displayTravauxModal();
@@ -97,16 +104,46 @@ if (imgToRemove) {
         modal1.style.display = "block"; // Affiche la modale 1
         modal2.style.display = "none"; // Assure que la modale 2 est cachée
         displayTravauxModal(); // Recharge les images à chaque ouverture
+        const messageDiv = document.querySelector(".modalinter .modale-error-message");
+if (messageDiv) {
+  messageDiv.textContent = "";
+  messageDiv.style.color = "";
+}
       });
     }
+    
+
   
     // Aller à la modale 2
-    if (btnAjout) {
-      btnAjout.addEventListener("click", () => {
-        modal1.style.display = "none";
-        modal2.style.display = "block";
-      });
+if (btnAjout) {
+  btnAjout.addEventListener("click", () => {
+    modal1.style.display = "none";
+    modal2.style.display = "block";
+    chargerCategories(); // recharge les catégories
+
+    // Réinitialiser le formulaire
+    const form = document.getElementById("form-photo");
+    if (form) form.reset();
+
+    // Supprimer l’image prévisualisée
+    const previewImg = document.getElementById("displayedImage");
+    if (previewImg) previewImg.remove();
+
+    // Réafficher l’icône et le label
+    const icon = document.querySelector(".add-img");
+    const label = document.querySelector("label.file");
+    if (icon) icon.style.display = "block";
+    if (label) label.style.display = "block";
+
+    // Réinitialiser le message d’erreur
+    const messageDiv = document.querySelector(".addPhoto .modale-error-message");
+    if (messageDiv) {
+      messageDiv.textContent = "";
+      messageDiv.style.color = "";
     }
+  });
+}
+
   
     // Retour à la modale 1
     if (flecheRetour) {
@@ -122,6 +159,12 @@ if (imgToRemove) {
         fondModale.style.display = "none";
         modal1.style.display = "none";
         modal2.style.display = "none";
+
+         const messageDiv = document.querySelector(".modale-error-message");
+  if (messageDiv) {
+    messageDiv.textContent = "";
+    messageDiv.style.color = "";
+    }
       }
     });
   
@@ -138,6 +181,8 @@ if (imgToRemove) {
         modal1.style.display = "none";
         modal2.style.display = "none";
       }
+     
+
     });
   
     // Aperçu image
@@ -200,12 +245,21 @@ if (imgToRemove) {
           const select = document.getElementById("category"); // ← c’est bien "category" ici
           select.innerHTML = ""; // Nettoyer avant d'ajouter
       
-          categories.forEach((categorie) => {
-            const option = document.createElement("option");
-            option.value = categorie.id;
-            option.textContent = categorie.name;
-            select.appendChild(option);
-          });
+          // Ajouter une option par défaut
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "Choisissez une catégorie";
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    select.appendChild(defaultOption);
+
+    // Ajouter les vraies catégories
+    categories.forEach((categorie) => {
+      const option = document.createElement("option");
+      option.value = categorie.id;
+      option.textContent = categorie.name;
+      select.appendChild(option);
+    });
         } catch (error) {
           console.error("Erreur lors du chargement des catégories :", error);
         }
@@ -226,11 +280,19 @@ if (btnValider) {
     const category = document.getElementById("category").value;
     const imageFile = document.getElementById("file").files[0];
 
-    if (!title || !category || !imageFile) {
-      alert("Merci de remplir tous les champs avant de valider.");
-      return;
-    }
+   const messageDiv = document.querySelector(".addPhoto .modale-error-message");
+   console.log("messageDiv trouvé ?", messageDiv);
 
+messageDiv.textContent = "";
+
+
+if (!title || !category || !imageFile) {
+  
+  messageDiv.textContent = "Merci de remplir tous les champs avant de valider.";
+  
+  
+  return;
+}
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", parseInt(category));
@@ -252,13 +314,25 @@ if (btnValider) {
         body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error("Erreur lors de l'ajout");
-      }
+     if (!response.ok) {
+  if (response.status === 400) {
+    messageDiv.textContent = "Requête invalide : vérifie les champs.";
+  } else if (response.status === 401) {
+    messageDiv.textContent = "Non autorisé : tu dois être connecté.";
+  } else if (response.status === 500) {
+    messageDiv.textContent = "Erreur serveur. Réessaie plus tard.";
+  } else {
+    messageDiv.textContent = "Une erreur est survenue lors de l'ajout.";
+  }
+  
+  return;
+}
+
 
       const newWork = await response.json();
       console.log("Nouvel élément ajouté :", newWork);
       ajouterProjetDansGalerie(newWork);
+      
 
 
 
@@ -299,7 +373,7 @@ if (btnValider) {
       worksDom.appendChild(workWrapper);
       
 
-      // 👉 Fermer entièrement la modale
+      //  Fermer entièrement la modale
       document.querySelector(".modal").style.display = "none";
 
       // Réinitialiser le formulaire

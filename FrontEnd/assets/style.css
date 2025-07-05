@@ -57,6 +57,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
+	
 }
 
 
@@ -96,6 +97,11 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+nav ul li a {
+  text-decoration: none; /* ✅ Supprime le soulignement */
+  color: black;           /* ✅ Texte en noir */
+}
+
 
 li:hover {
 	color: #B1663C;
@@ -131,6 +137,8 @@ li:hover {
 	justify-content: center;
 	gap: 80px;
 }
+
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -288,10 +296,6 @@ footer nav ul {
 	gap: 10px;
 	width: 100%;
 }
-
-
-
-
 /* Modal */
 .modifier.btn-modifier {
 	display: flex;
